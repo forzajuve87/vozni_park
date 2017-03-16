@@ -1,0 +1,26 @@
+package vozni_park_vezba;
+
+public abstract class VozniPark {
+
+	private String adresa;
+	
+	// kostruktor
+	public VozniPark(String adresa) {
+		this.adresa = adresa;
+	}
+	
+	// set i get metode
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+	public String getAdresa() {
+		return this.adresa;
+	}
+	
+	// polomorfni metod
+	public abstract double porez_na_cene_registracije(int godina);
+	
+	public String toString() {
+		return "Vozni park:\nAdresa: " + this.adresa + "\n\n";
+	}
+}
