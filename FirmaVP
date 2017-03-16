@@ -1,0 +1,36 @@
+package vozni_park_vezba;
+
+public class FirmaVP extends VozniPark{
+
+	private Vozilo niz[];
+	
+	// kostruktor
+	public FirmaVP(String adresa, Vozilo niz[]) {
+		super(adresa);
+		this.niz = new Vozilo[niz.length];
+		
+		for(int i=0; i<this.niz.length; i++) {
+			this.niz[i] = new Vozilo(niz[i]);
+		}
+	}
+	
+	public double porez_na_cene_registracije(int godina) {
+		double porez = 0;
+		
+		for(int i=0; i<this.niz.length; i++) {
+			porez += niz[i].porez_na_cene_registracije(godina);
+		}
+		
+		return porez;
+	}
+	
+	public String toString() {
+		StringBuffer s = new StringBuffer(super.toString());
+		
+		for(int i=0; i<this.niz.length; i++) {
+			s.append(i+1 + ". vozilo:\n").append(niz[i] + "\n");
+		}
+		
+		return s.toString();
+	}
+}
