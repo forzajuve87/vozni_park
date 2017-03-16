@@ -1,0 +1,67 @@
+package vozni_park_vezba;
+
+import java.util.Scanner;
+
+public class TestVozila {
+
+	public static void main(String args[]) {
+		
+		VozniPark vozilo;
+		Vozilo niz[];
+		String tip_vozila, adresa, vozni_park;
+		int zapremina_motora, godina_proizvodnje, broj_vozila, godina_za_porez;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		/*
+		System.out.println("---------------PRAG---------------");
+		System.out.println("Unesite tip vozila (p-putnicko ili m-motocikl):");
+		tip_vozila = sc.nextLine();
+		System.out.println("Unesite zapreminu motora: ");
+		zapremina_motora = sc.nextInt();
+		System.out.println("Unesite godinu proizvodnje: ");
+		godina_proizvodnje = sc.nextInt();
+		vozilo = new Vozilo(tip_vozila, zapremina_motora, godina_proizvodnje);
+		System.out.println(vozilo);
+		System.out.println("-----------------------------------");
+		*/
+		
+		System.out.println("Unesite adresu voznog parka:");
+		adresa = sc.nextLine();
+		System.out.println("Unesite vozni park koji zelite (p-privatni ili f-poslovni):");
+		vozni_park = sc.nextLine();
+
+		if(vozni_park.equals("p")) {
+			System.out.println("Unesite tip vozila (p-putnicko ili m-motocikl):");
+			tip_vozila = sc.nextLine();
+			System.out.println("Unesite zapreminu motora: ");
+			zapremina_motora = sc.nextInt();
+			System.out.println("Unesite godinu proizvodnje: ");
+			godina_proizvodnje = sc.nextInt();
+			vozilo = new PrivatniVP(adresa, new Vozilo(tip_vozila, zapremina_motora, godina_proizvodnje));
+		}
+		else {
+			System.out.println("Unesite broj vozila u voznom parku:");
+			broj_vozila = sc.nextInt();
+			niz = new Vozilo[broj_vozila];
+			for(int i=0; i<niz.length; i++) {
+				System.out.println("Unesite tip vozila " + (i+1) + " (p-putnicko ili m-motocikl):");
+				sc.nextLine();
+				tip_vozila = sc.nextLine();
+				System.out.println("Unesite zapreminu motora vozila " + (i+1) + ":");
+				zapremina_motora = sc.nextInt();
+				System.out.println("Unesite godinu proizvodnje vozila " + (i+1) + ":");
+				godina_proizvodnje = sc.nextInt();
+				niz[i] = new Vozilo(tip_vozila, zapremina_motora, godina_proizvodnje);
+			}
+			vozilo = new FirmaVP(adresa, niz);
+		}
+		System.out.println("Unesite godinu za koju zelite izracunavanje iznosa poreza za vozila voznog parka:");
+		godina_za_porez = sc.nextInt();
+		
+		System.out.println(vozilo);
+		System.out.println("Ukupni porez koji treba da bude placen je " + vozilo.porez_na_cene_registracije(godina_za_porez));
+		
+		sc.close();
+	}
+}
