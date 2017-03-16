@@ -1,0 +1,79 @@
+package vozni_park_vezba;
+
+public class Vozilo {
+
+	private String tip_vozila;
+	private int zapremina_motora, godina_proizvodnje;
+	
+	// kostruktori
+	public Vozilo(String tip_vozila, int zapremina_motora, int godina_proizvodnje) {
+		this.tip_vozila = tip_vozila;
+		this.zapremina_motora = zapremina_motora;
+		this.godina_proizvodnje = godina_proizvodnje;
+	}
+	public Vozilo(final Vozilo s) {
+		this(s.tip_vozila, s.zapremina_motora, s.godina_proizvodnje);
+	}
+	
+	// set i get metode
+	public void setTipVozila(String tip_vozila) {
+		this.tip_vozila = tip_vozila;
+	}
+	public void setZapreminaMotora(int zapremina_motora) {
+		this.zapremina_motora = zapremina_motora;
+	}
+	public void setGodinaProizvodnje(int godina_proizvodnje) {
+		this.godina_proizvodnje = godina_proizvodnje;
+	}
+	public String getTipVozila() {
+		return this.tip_vozila;
+	}
+	public int getZapreminaMotora() {
+		return this.zapremina_motora;
+	}
+	public int getgodinaProizvodnje() {
+		return this.godina_proizvodnje;
+	}
+	
+	public double porez_na_cene_registracije(int godina) {
+		double porez = 0;
+		
+		if(this.tip_vozila.equals("p")) {
+			if(this.zapremina_motora>=1 && this.zapremina_motora<=2000){
+				porez = 10150;
+			}
+			else if(this.zapremina_motora>2000 && this.zapremina_motora<=3000) {
+				porez = 50350;
+			}
+			else {
+				porez = 210920;
+			}
+		}
+		else {
+			if(this.zapremina_motora>=1 && this.zapremina_motora<=500){
+				porez = 3400;
+			}
+			else if(this.zapremina_motora>500 && this.zapremina_motora<=1100) {
+				porez = 8800;
+			}
+			else {
+				porez = 11890;
+			}
+		}
+		
+		if((godina - godina_proizvodnje)>5 && (godina - godina_proizvodnje)<=10) {
+			return porez = porez - ((25 * porez)/100);
+		}
+		else if((godina - godina_proizvodnje)>10) {
+			return porez = porez - ((40 * porez)/100);
+		}
+		else {
+			return porez;
+		}
+	}
+	
+	public String toString() {
+		return "Vozilo je tipa " + this.tip_vozila + ", ima zapreminu motora " + this.zapremina_motora + " ccm i proizvedeno je "
+				+ this.godina_proizvodnje + ". godine.";
+	}
+}
